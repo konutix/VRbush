@@ -25,25 +25,7 @@ public class SawScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("w"))
-        {
-            transform.position = transform.position + new Vector3(0.0f, 1.0f, 0.0f) * Time.deltaTime * speed;
-        }
 
-        if (Input.GetKey("s"))
-        {
-            transform.position = transform.position + new Vector3(0.0f, -1.0f, 0.0f) * Time.deltaTime * speed;
-        }
-
-        if (Input.GetKey("d"))
-        {
-            transform.position = transform.position + new Vector3(1.0f, 0.0f, 0.0f) * Time.deltaTime * speed;
-        }
-
-        if (Input.GetKey("a"))
-        {
-            transform.position = transform.position + new Vector3(-1.0f, 0.0f, 0.0f) * Time.deltaTime * speed;
-        }
     }
 
     private void OnTriggerEnter(Collider other)
