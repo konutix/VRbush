@@ -4140,19 +4140,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7883151560689251378, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
       propertyPath: shape
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7883151560689251378, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
       propertyPath: xSize
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7883151560689251378, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
       propertyPath: ySize
-      value: 25
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7883151560689251378, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
       propertyPath: zSize
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7883151560689251378, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
       propertyPath: voxelSize
