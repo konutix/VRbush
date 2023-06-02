@@ -10,7 +10,7 @@ EditorBuildSettings:
     guid: 62223332a39faa941b994704be3fb708
   - enabled: 1
     path: Assets/Scenes/HelloWorld.unity
-    guid: 9830bb51704db17478c3827f23d6e12d
+    guid: 47f6e15cfe07a644095ae09e4fd298a4
   m_configObjects:
     com.htc.upm.wave.xrsdk.xrsettings: {fileID: 11400000, guid: 5c07fc749f008e344aa8c185049459f5, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7d07b69d923d44c4183aa5dfefb7c181, type: 2}
