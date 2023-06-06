@@ -45,8 +45,11 @@ public class RootBush : MonoBehaviour
                         Collider[] hitColliders = Physics.OverlapSphere(voxPos, 0.0f);
                         foreach (var hitCollider in hitColliders)
                         {
-                            VoxelPosArr[x, y, z].vox.SetActive(true);
-                            VoxelPosArr[x, y, z].cut = false;
+                            if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Shape"))
+                            {
+                                VoxelPosArr[x, y, z].vox.SetActive(true);
+                                VoxelPosArr[x, y, z].cut = false;
+                            }
                         }
                     }
                     else
