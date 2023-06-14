@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class SawScript : MonoBehaviour
 {
@@ -10,7 +11,9 @@ public class SawScript : MonoBehaviour
 
     HashSet<Voxel> toDestroy;
 
-    public float speed = 2.0f;
+    public TMP_Text pointsTMP;
+
+    public int points = 0;
 
     int bXsize;
     int bYsize;
@@ -37,6 +40,17 @@ public class SawScript : MonoBehaviour
         {
             v.vox.SetActive(false);
             v.cut = true;
+
+            //give or sub points and update score
+            if(v.shouldCut) 
+            {
+                points++;
+            }
+            else
+            {
+                points--;
+            }
+            pointsTMP.text = points.ToString();
 
             VoxelAttribs attribs = v.vox.gameObject.GetComponent<VoxelAttribs>();
 
@@ -142,6 +156,17 @@ public class SawScript : MonoBehaviour
             int z = attribs.z;
 
             RootScr.VoxelPosArr[x, y, z].cut = true;
+
+            //give or sub points and update score
+            if (RootScr.VoxelPosArr[x, y, z].shouldCut)
+            {
+                points++;
+            }
+            else
+            {
+                points--;
+            }
+            pointsTMP.text = points.ToString();
 
             Voxel adjacent;
 

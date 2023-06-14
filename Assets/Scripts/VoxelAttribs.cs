@@ -9,6 +9,7 @@ public class Voxel
     public bool cut;
     public bool root;
     public bool marked;
+    public bool shouldCut;
 
     public Voxel()
     {
@@ -16,6 +17,7 @@ public class Voxel
         cut = false;
         root = false;
         marked = false;
+        shouldCut = false;
     }
 }
 

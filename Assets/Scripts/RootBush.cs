@@ -2,14 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using UnityEditor;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class RootBush : MonoBehaviour
 {
     public GameObject VoxelPrefab;
+    public GameObject VoxeltoCutPrefab;
+    public GameObject Shape;
+    public GameObject FinalShape;
+
+    public Transform marker;
+    public Transform bushBase;
 
     public Voxel[,,] VoxelPosArr;
     public bool shape = false;
+    public bool finalShape = false;
 
     public int xSize = 0;
     public int ySize = 0;
@@ -22,19 +31,56 @@ public class RootBush : MonoBehaviour
 
     public void GenerateMesh()
     {
+        //move marker to the center of bush
+        marker.position = new Vector3(
+            (float)xSize * 0.5f * voxelSize, (float)ySize * 0.5f * voxelSize, (float)zSize * 0.5f * voxelSize)
+            + transform.position;
+
+        //spawn bush initial and demanded shapes
+        Instantiate(FinalShape, marker.position, Quaternion.identity);
+
+        if(shape)
+        {
+            Instantiate(Shape, marker.position, Quaternion.identity);
+        }
+
         for(int x = 0; x < xSize; x++)
         {
             for(int y = 0; y < ySize; y++)
             {
                 for( int z = 0; z < zSize; z++)
                 {
+                    //calculate position
                     float xPos = voxelHalf + (x * voxelSize);
                     float yPos = voxelHalf + (y * voxelSize);
                     float zPos = voxelHalf + (z * voxelSize);
-
                     Vector3 voxPos = new Vector3(xPos, yPos, zPos) + transform.position;
+
+                    //create voxel
                     VoxelPosArr[x, y, z] = new Voxel();
-                    VoxelPosArr[x, y, z].vox = Instantiate(VoxelPrefab, voxPos, Quaternion.identity);
+
+                    //mark if should be cut
+                    GameObject prefabToInst = VoxelPrefab;
+                    if (finalShape)
+                    {
+                        Collider[] hitCollidersToCut = Physics.OverlapSphere(voxPos, 0.0f);
+                        VoxelPosArr[x, y, z].shouldCut = true;
+                        foreach (var hitCollider in hitCollidersToCut)
+                        {
+                            if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Final"))
+                            {
+                                VoxelPosArr[x, y, z].shouldCut = false;
+                            }
+                        }
+
+                        if (VoxelPosArr[x, y, z].shouldCut)
+                        {
+                            prefabToInst = VoxeltoCutPrefab;
+                        }
+                    }
+
+                    //Instantiate
+                    VoxelPosArr[x, y, z].vox = Instantiate(prefabToInst, voxPos, Quaternion.identity);
                     VoxelPosArr[x, y, z].vox.transform.localScale = voxelScale;
 
                     if (shape)
@@ -154,6 +200,16 @@ public class RootBush : MonoBehaviour
 
         VoxelPosArr = new Voxel[xSize, ySize, zSize];
 
-        GenerateMesh();
+        //adjust bush base
+        bushBase.position = new Vector3(
+            (float)xSize * 0.5f * voxelSize, 0.0f, (float)zSize * 0.5f * voxelSize) + transform.position;
+
+        bushBase.localScale =
+            new Vector3(((float)xSize + 0.5f) * voxelSize, 0.05f, ((float)xSize + 0.5f) * voxelSize);
+
+        if (Application.isPlaying)
+        {
+            GenerateMesh();
+        }
     }
 }
