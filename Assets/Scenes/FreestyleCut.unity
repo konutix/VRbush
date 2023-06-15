@@ -1703,7 +1703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1451258901264256593, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.64
+      value: 1.48
       objectReference: {fileID: 0}
     - target: {fileID: 1451258901264256593, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
       propertyPath: m_LocalScale.y
@@ -1711,15 +1711,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1451258901264256593, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.64
+      value: 1.48
       objectReference: {fileID: 0}
     - target: {fileID: 1451258901264256593, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.79999995
+      value: 0.71999997
       objectReference: {fileID: 0}
     - target: {fileID: 1451258901264256593, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.79999995
+      value: 0.72
       objectReference: {fileID: 0}
     - target: {fileID: 2035554303549571436, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
       propertyPath: m_Name
@@ -1740,6 +1740,18 @@ PrefabInstance:
     - target: {fileID: 7508353765599051161, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
       propertyPath: m_Direction
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883151560689251378, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
+      propertyPath: xSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883151560689251378, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
+      propertyPath: ySize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883151560689251378, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
+      propertyPath: zSize
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7883151560689251378, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
       propertyPath: finalShape

@@ -170,6 +170,25 @@ public class SawScript : MonoBehaviour
 
             Voxel adjacent;
 
+            //up voxel check
+            if (y + 1 < bYsize)
+            {
+                adjacent = RootScr.VoxelPosArr[x, y + 1, z];
+                if (!adjacent.cut)
+                {
+                    bool rooted = CheckRooted(x, y + 1, z);
+
+                    if (rooted)
+                    {
+                        adjacent.vox.SetActive(true);
+                    }
+                    else
+                    {
+                        toDestroy.Add(adjacent);
+                    }
+                }
+            }
+
             //right voxel check
             if (x + 1 < bXsize)
             {
@@ -196,44 +215,6 @@ public class SawScript : MonoBehaviour
                 if (!adjacent.cut)
                 {
                     bool rooted = CheckRooted(x - 1, y, z);
-
-                    if (rooted)
-                    {
-                        adjacent.vox.SetActive(true);
-                    }
-                    else
-                    {
-                        toDestroy.Add(adjacent);
-                    }
-                }
-            }
-
-            //up voxel check
-            if (y + 1 < bYsize)
-            {
-                adjacent = RootScr.VoxelPosArr[x, y + 1, z];
-                if (!adjacent.cut)
-                {
-                    bool rooted = CheckRooted(x, y + 1, z);
-
-                    if (rooted)
-                    {
-                        adjacent.vox.SetActive(true);
-                    }
-                    else
-                    {
-                        toDestroy.Add(adjacent);
-                    }
-                }
-            }
-
-            //bot voxel check
-            if (y - 1 >= 0)
-            {
-                adjacent = RootScr.VoxelPosArr[x, y - 1, z];
-                if (!adjacent.cut)
-                {
-                    bool rooted = CheckRooted(x, y - 1, z);
 
                     if (rooted)
                     {
@@ -283,6 +264,25 @@ public class SawScript : MonoBehaviour
                     }
                 }
             }
+
+            //bot voxel check
+            if (y - 1 >= 0)
+            {
+                adjacent = RootScr.VoxelPosArr[x, y - 1, z];
+                if (!adjacent.cut)
+                {
+                    bool rooted = CheckRooted(x, y - 1, z);
+
+                    if (rooted)
+                    {
+                        adjacent.vox.SetActive(true);
+                    }
+                    else
+                    {
+                        toDestroy.Add(adjacent);
+                    }
+                }
+            }
         }
     }
 
@@ -308,6 +308,19 @@ public class SawScript : MonoBehaviour
             }
 
             Voxel adjacent;
+
+            //up voxel check
+            if (y + 1 < bYsize)
+            {
+                adjacent = RootScr.VoxelPosArr[x, y + 1, z];
+                if (!adjacent.cut)
+                {
+                    if (!visited.Contains(adjacent))
+                    {
+                        stack.Push(adjacent);
+                    }
+                }
+            }
 
             //right voxel check
             if (x + 1 < bXsize)
@@ -335,32 +348,6 @@ public class SawScript : MonoBehaviour
                 }
             }
 
-            //up voxel check
-            if (y + 1 < bYsize)
-            {
-                adjacent = RootScr.VoxelPosArr[x, y + 1, z];
-                if (!adjacent.cut)
-                {
-                    if (!visited.Contains(adjacent))
-                    {
-                        stack.Push(adjacent);
-                    }
-                }
-            }
-
-            //bot voxel check
-            if (y - 1 >= 0)
-            {
-                adjacent = RootScr.VoxelPosArr[x, y - 1, z];
-                if (!adjacent.cut)
-                {
-                    if (!visited.Contains(adjacent))
-                    {
-                        stack.Push(adjacent);
-                    }
-                }
-            }
-
             //back voxel check
             if (z + 1 < bZsize)
             {
@@ -378,6 +365,19 @@ public class SawScript : MonoBehaviour
             if (z - 1 >= 0)
             {
                 adjacent = RootScr.VoxelPosArr[x, y, z - 1];
+                if (!adjacent.cut)
+                {
+                    if (!visited.Contains(adjacent))
+                    {
+                        stack.Push(adjacent);
+                    }
+                }
+            }
+
+            //bot voxel check
+            if (y - 1 >= 0)
+            {
+                adjacent = RootScr.VoxelPosArr[x, y - 1, z];
                 if (!adjacent.cut)
                 {
                     if (!visited.Contains(adjacent))

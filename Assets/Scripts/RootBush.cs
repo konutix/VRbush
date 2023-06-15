@@ -36,15 +36,10 @@ public class RootBush : MonoBehaviour
             (float)xSize * 0.5f * voxelSize, (float)ySize * 0.5f * voxelSize, (float)zSize * 0.5f * voxelSize)
             + transform.position;
 
-        //spawn bush initial and demanded shapes
-        Instantiate(FinalShape, marker.position, Quaternion.identity);
+        GameObject finalShapeObj = Instantiate(FinalShape, marker.position, Quaternion.identity); ;
+        GameObject shapeObj = Instantiate(Shape, marker.position, Quaternion.identity);
 
-        if(shape)
-        {
-            Instantiate(Shape, marker.position, Quaternion.identity);
-        }
-
-        for(int x = 0; x < xSize; x++)
+        for (int x = 0; x < xSize; x++)
         {
             for(int y = 0; y < ySize; y++)
             {
@@ -191,6 +186,17 @@ public class RootBush : MonoBehaviour
                 }
             }
         }
+
+        if (finalShape)
+        {
+            //spawn bush initial and demanded shapes
+            Destroy(finalShapeObj);
+        }
+
+        if (shape)
+        {
+            Destroy(shapeObj);
+        }
     }
 
     void Start()
@@ -205,7 +211,7 @@ public class RootBush : MonoBehaviour
             (float)xSize * 0.5f * voxelSize, 0.0f, (float)zSize * 0.5f * voxelSize) + transform.position;
 
         bushBase.localScale =
-            new Vector3(((float)xSize + 0.5f) * voxelSize, 0.05f, ((float)xSize + 0.5f) * voxelSize);
+            new Vector3(((float)xSize + 0.5f) * voxelSize, 0.05f, ((float)zSize + 0.5f) * voxelSize);
 
         if (Application.isPlaying)
         {
