@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
 using UnityEditor;
 using UnityEngine;
 
@@ -75,7 +71,11 @@ public class RootBush : MonoBehaviour
                     }
 
                     //Instantiate
+                    Vector3 eulerRandRot = new Vector3(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f));
+                    Quaternion randQat = Quaternion.Euler(eulerRandRot);
+
                     VoxelPosArr[x, y, z].vox = Instantiate(prefabToInst, voxPos, Quaternion.identity);
+                    VoxelPosArr[x, y, z].vox.transform.GetChild(0).rotation = randQat;
                     VoxelPosArr[x, y, z].vox.transform.localScale = voxelScale;
 
                     if (shape)
@@ -115,71 +115,114 @@ public class RootBush : MonoBehaviour
         //check adjacent voxels
         if (shape)
         {
-            for (int x = 0; x < xSize; x++)
+            for (int db = 0; db < 1; db++)
             {
-                for (int y = 0; y < ySize; y++)
+                for (int x = 0; x < xSize; x++)
                 {
-                    for (int z = 0; z < zSize; z++)
+                    for (int y = 0; y < ySize; y++)
                     {
-                        Voxel atb = VoxelPosArr[x, y, z];
-
-                        Voxel adjacent;
-                        int adj = 0;
-
-                        if (!atb.cut)
+                        for (int z = 0; z < zSize; z++)
                         {
-                            //right voxel check
-                            if (x + 1 < xSize - 1)
-                            {
-                                adjacent = VoxelPosArr[x + 1, y, z];
-                                if (!adjacent.cut)
-                                    adj++;
-                            }
+                            Voxel atb = VoxelPosArr[x, y, z];
 
-                            //left voxel check
-                            if (x - 1 >= 0)
-                            {
-                                adjacent = VoxelPosArr[x - 1, y, z];
-                                if (!adjacent.cut)
-                                    adj++;
-                            }
+                            Voxel adjacent;
+                            int adj = 0;
+                            bool crs = false;
 
-                            //up voxel check
-                            if (y + 1 < ySize - 1)
+                            if (!atb.cut && !atb.cross)
                             {
-                                adjacent = VoxelPosArr[x, y + 1, z];
-                                if (!adjacent.cut)
-                                    adj++;
-                            }
+                                //right voxel check
+                                if (x + 1 <= xSize - 1)
+                                {
+                                    adjacent = VoxelPosArr[x + 1, y, z];
+                                    if (!adjacent.cut)
+                                    {
+                                        adj++;
+                                        if (db == 1 && adjacent.cross)
+                                            crs = true;
+                                    }
+                                }
 
-                            //bot voxel check
-                            if (y - 1 >= 0)
-                            {
-                                adjacent = VoxelPosArr[x, y - 1, z];
-                                if (!adjacent.cut)
-                                    adj++;
-                            }
+                                //left voxel check
+                                if (x - 1 >= 0)
+                                {
+                                    adjacent = VoxelPosArr[x - 1, y, z];
+                                    if (!adjacent.cut)
+                                    {
+                                        adj++;
+                                        if (db == 1 && adjacent.cross)
+                                            crs = true;
+                                    }
+                                }
 
-                            //back voxel check
-                            if (z + 1 < zSize - 1)
-                            {
-                                adjacent = VoxelPosArr[x, y, z + 1];
-                                if (!adjacent.cut)
-                                    adj++;
-                            }
+                                //up voxel check
+                                if (y + 1 <= ySize - 1)
+                                {
+                                    adjacent = VoxelPosArr[x, y + 1, z];
+                                    if (!adjacent.cut)
+                                    {
+                                        adj++;
+                                        if (db == 1 && adjacent.cross)
+                                            crs = true;
+                                    }
+                                }
 
-                            //front voxel check
-                            if (z - 1 >= 0)
-                            {
-                                adjacent = VoxelPosArr[x, y, z - 1];
-                                if (!adjacent.cut)
-                                    adj++;
-                            }
+                                //bot voxel check
+                                if (y - 1 >= 0)
+                                {
+                                    adjacent = VoxelPosArr[x, y - 1, z];
+                                    if (!adjacent.cut)
+                                    {
+                                        adj++;
+                                        if (db == 1 && adjacent.cross)
+                                            crs = true;
+                                    }
+                                }
 
-                            //if covered all sides deactivate
-                            if (adj == 6)
-                            {
-                                VoxelPosArr[x, y, z].vox.SetActive(false);
+                                //back voxel check
+                                if (z + 1 <= zSize - 1)
+                                {
+                                    adjacent = VoxelPosArr[x, y, z + 1];
+                                    if (!adjacent.cut)
+                                    {
+                                        adj++;
+                                        if (db == 1 && adjacent.cross)
+                                            crs = true;
+                                    }
+                                }
+
+                                //front voxel check
+                                if (z - 1 >= 0)
+                                {
+                                    adjacent = VoxelPosArr[x, y, z - 1];
+                                    if (!adjacent.cut)
+                                    {
+                                        adj++;
+                                        if (db == 1 && adjacent.cross)
+                                            crs = true;
+                                    }
+                                }
+
+                                //if covered all sides deactivate
+                                if (crs)
+                                {
+                                    VoxelPosArr[x, y, z].vox.SetActive(true);
+                                    VoxelPosArr[x, y, z].vox.transform.GetChild(0).gameObject.SetActive(false);
+                                    VoxelPosArr[x, y, z].vox.transform.GetChild(1).gameObject.SetActive(true);
+                                }
+                                else
+                                {
+                                    if (adj == 6)
+                                    {
+                                        VoxelPosArr[x, y, z].vox.SetActive(false);
+                                    }
+                                    else
+                                    {
+                                        VoxelPosArr[x, y, z].vox.transform.GetChild(0).gameObject.SetActive(false);
+                                        VoxelPosArr[x, y, z].vox.transform.GetChild(1).gameObject.SetActive(true);
+                                        atb.cross = true;
+                                    }
+                                }
                             }
                         }
                     }

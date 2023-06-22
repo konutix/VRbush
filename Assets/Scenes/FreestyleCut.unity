@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571409, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3431,6 +3431,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 888071956295140288, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1451258901264256593, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.48
@@ -3487,6 +3491,14 @@ PrefabInstance:
       propertyPath: finalShape
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7883151560689251378, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
+      propertyPath: VoxelPrefab
+      value: 
+      objectReference: {fileID: 5629124930212496131, guid: 678cbc922ceb305488a50b243a31fb4c, type: 3}
+    - target: {fileID: 7883151560689251378, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
+      propertyPath: VoxeltoCutPrefab
+      value: 
+      objectReference: {fileID: 5629124930212496131, guid: 678cbc922ceb305488a50b243a31fb4c, type: 3}
     - target: {fileID: 8600118906768577954, guid: 6d4d33c9bbc663746abbc049c53c9740, type: 3}
       propertyPath: m_Name
       value: ShapeCollider

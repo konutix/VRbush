@@ -181,6 +181,8 @@ public class SawScript : MonoBehaviour
                     if (rooted)
                     {
                         adjacent.vox.SetActive(true);
+                        adjacent.vox.transform.GetChild(0).gameObject.SetActive(false); //CROSS
+                        adjacent.vox.transform.GetChild(1).gameObject.SetActive(true); //BOX
                     }
                     else
                     {
@@ -200,6 +202,8 @@ public class SawScript : MonoBehaviour
                     if (rooted)
                     {
                         adjacent.vox.SetActive(true);
+                        adjacent.vox.transform.GetChild(0).gameObject.SetActive(false); //CROSS
+                        adjacent.vox.transform.GetChild(1).gameObject.SetActive(true); //BOX
                     }
                     else
                     {
@@ -219,6 +223,8 @@ public class SawScript : MonoBehaviour
                     if (rooted)
                     {
                         adjacent.vox.SetActive(true);
+                        adjacent.vox.transform.GetChild(0).gameObject.SetActive(false); //CROSS
+                        adjacent.vox.transform.GetChild(1).gameObject.SetActive(true); //BOX
                     }
                     else
                     {
@@ -238,6 +244,8 @@ public class SawScript : MonoBehaviour
                     if (rooted)
                     {
                         adjacent.vox.SetActive(true);
+                        adjacent.vox.transform.GetChild(0).gameObject.SetActive(false); //CROSS
+                        adjacent.vox.transform.GetChild(1).gameObject.SetActive(true); //BOX
                     }
                     else
                     {
@@ -257,6 +265,8 @@ public class SawScript : MonoBehaviour
                     if (rooted)
                     {
                         adjacent.vox.SetActive(true);
+                        adjacent.vox.transform.GetChild(0).gameObject.SetActive(false); //CROSS
+                        adjacent.vox.transform.GetChild(1).gameObject.SetActive(true); //BOX
                     }
                     else
                     {
@@ -276,6 +286,8 @@ public class SawScript : MonoBehaviour
                     if (rooted)
                     {
                         adjacent.vox.SetActive(true);
+                        adjacent.vox.transform.GetChild(0).gameObject.SetActive(false); //CROSS
+                        adjacent.vox.transform.GetChild(1).gameObject.SetActive(true); //BOX
                     }
                     else
                     {

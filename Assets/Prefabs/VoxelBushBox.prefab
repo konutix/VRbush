@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7a5bf46185c10d469740cd8d1bcee06, type: 2}
+  - {fileID: 2100000, guid: 926c927685eecd64896d5844b8121533, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6980722639500331015}
   - component: {fileID: 5833102135251147952}
   m_Layer: 0
-  m_Name: VaoxelStaticToCut
+  m_Name: VoxelBushBox
   m_TagString: StaticBush
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

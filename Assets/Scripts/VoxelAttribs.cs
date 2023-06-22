@@ -7,6 +7,7 @@ public class Voxel
     public GameObject vox;
 
     public bool cut;
+    public bool cross;
     public bool root;
     public bool marked;
     public bool shouldCut;
@@ -15,6 +16,7 @@ public class Voxel
     {
         vox = null;
         cut = false;
+        cross = false;
         root = false;
         marked = false;
         shouldCut = false;
