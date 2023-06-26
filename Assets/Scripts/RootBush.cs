@@ -115,7 +115,7 @@ public class RootBush : MonoBehaviour
         //check adjacent voxels
         if (shape)
         {
-            for (int db = 0; db < 1; db++)
+            for (int db = 0; db < 2; db++)
             {
                 for (int x = 0; x < xSize; x++)
                 {
@@ -214,12 +214,14 @@ public class RootBush : MonoBehaviour
                                 {
                                     if (adj == 6)
                                     {
-                                        VoxelPosArr[x, y, z].vox.SetActive(false);
+                                        //VoxelPosArr[x, y, z].vox.SetActive(false);
+                                        VoxelPosArr[x, y, z].vox.transform.GetChild(0).gameObject.SetActive(false);
+                                        VoxelPosArr[x, y, z].vox.transform.GetChild(1).gameObject.SetActive(true);
                                     }
                                     else
                                     {
-                                        VoxelPosArr[x, y, z].vox.transform.GetChild(0).gameObject.SetActive(false);
-                                        VoxelPosArr[x, y, z].vox.transform.GetChild(1).gameObject.SetActive(true);
+                                        VoxelPosArr[x, y, z].vox.transform.GetChild(0).gameObject.SetActive(true);
+                                        VoxelPosArr[x, y, z].vox.transform.GetChild(1).gameObject.SetActive(false);
                                         atb.cross = true;
                                     }
                                 }
