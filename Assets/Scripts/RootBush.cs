@@ -76,6 +76,7 @@ public class RootBush : MonoBehaviour
 
                     VoxelPosArr[x, y, z].vox = Instantiate(prefabToInst, voxPos, Quaternion.identity);
                     VoxelPosArr[x, y, z].vox.transform.GetChild(0).rotation = randQat;
+                    VoxelPosArr[x, y, z].vox.transform.GetChild(1).rotation = randQat;
                     VoxelPosArr[x, y, z].vox.transform.localScale = voxelScale;
 
                     if (shape)
@@ -214,9 +215,9 @@ public class RootBush : MonoBehaviour
                                 {
                                     if (adj == 6)
                                     {
-                                        //VoxelPosArr[x, y, z].vox.SetActive(false);
-                                        VoxelPosArr[x, y, z].vox.transform.GetChild(0).gameObject.SetActive(false);
-                                        VoxelPosArr[x, y, z].vox.transform.GetChild(1).gameObject.SetActive(true);
+                                        VoxelPosArr[x, y, z].vox.SetActive(false);
+                                        //VoxelPosArr[x, y, z].vox.transform.GetChild(0).gameObject.SetActive(false);
+                                        //VoxelPosArr[x, y, z].vox.transform.GetChild(1).gameObject.SetActive(true);
                                     }
                                     else
                                     {

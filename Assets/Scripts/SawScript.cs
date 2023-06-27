@@ -35,7 +35,10 @@ public class SawScript : MonoBehaviour
     void Update()
     {
         HashSet<Voxel> newToDestroy = new HashSet<Voxel>();
-        
+
+        int fps = (int)(1.0f / Time.deltaTime);
+        pointsTMP.text = fps.ToString();
+
         foreach (Voxel v in toDestroy)
         {
             v.vox.SetActive(false);
