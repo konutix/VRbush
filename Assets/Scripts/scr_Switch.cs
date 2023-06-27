@@ -9,6 +9,8 @@ public class scr_Switch : MonoBehaviour
     public Transform switchObject;
     public bool enabled = false;
 
+    public GameObject bushShape;
+
     public void SetEnabled(bool value, bool forceSet = false)
     {
         if (ChangeProp.Set(ref enabled, value) || forceSet)
@@ -16,14 +18,14 @@ public class scr_Switch : MonoBehaviour
             // change the apperence the switch
             switchObject.localEulerAngles = new Vector3(0f, 0f, value ? 15f : -15f);
 
-            // Change the global gravity in the scene
             if (value)
             {
-                Debug.Log("Turned ON");
-            }
-            else
-            {
-                Debug.Log("Turned OFF");
+                GameObject ctrl = GameObject.Find("GameController(Clone)");
+
+                if (ctrl != null)
+                {
+                    ctrl.GetComponent<GameController>().bushShape = bushShape;
+                }
             }
         }
     }
@@ -35,6 +37,7 @@ public class scr_Switch : MonoBehaviour
 
     public void OnColliderEventHoverEnter(ColliderHoverEventData eventData)
     {
+        GameObject.Find("GameController(Clone)").GetComponent<GameController>().TurnOff();
         SetEnabled(!enabled);
     }
 }

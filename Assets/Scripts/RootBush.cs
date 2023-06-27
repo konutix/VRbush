@@ -1,9 +1,14 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 [ExecuteInEditMode]
 public class RootBush : MonoBehaviour
 {
+    public bool generated = false;
+    public bool timed = false;
+    public bool precision = false;
+
     public GameObject VoxelPrefab;
     public GameObject VoxeltoCutPrefab;
     public GameObject Shape;
@@ -21,6 +26,9 @@ public class RootBush : MonoBehaviour
     public int zSize = 0;
 
     public float voxelSize = 1.0f;
+
+    public List<GameObject> shapeList;
+    public List<GameObject> finalShapeList;
 
     Vector3 voxelScale;
     float voxelHalf = 0.5f;
@@ -261,7 +269,42 @@ public class RootBush : MonoBehaviour
 
         if (Application.isPlaying)
         {
-            GenerateMesh();
+            if (!timed && !precision)
+            {
+                GameObject ctrl = GameObject.Find("GameController(Clone)");
+
+                if (ctrl != null)
+                {
+                    Shape = ctrl.GetComponent<GameController>().bushShape;
+
+                    GenerateMesh();
+                    generated = true;
+                }
+            }
+            else
+            {
+                GenerateMesh();
+                generated = true;
+            }
+        }
+    }
+
+    public void Update()
+    {
+        if(!generated)
+        {
+            if (!timed && !precision)
+            {
+                GameObject ctrl = GameObject.Find("GameController(Clone)");
+
+                if (ctrl != null)
+                {
+                    Shape = ctrl.GetComponent<GameController>().bushShape;
+
+                    GenerateMesh();
+                    generated = true;
+                }
+            }
         }
     }
 }

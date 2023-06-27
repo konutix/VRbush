@@ -37,7 +37,11 @@ public class SawScript : MonoBehaviour
         HashSet<Voxel> newToDestroy = new HashSet<Voxel>();
 
         int fps = (int)(1.0f / Time.deltaTime);
-        pointsTMP.text = fps.ToString();
+
+        if (pointsTMP != null)
+        {
+            pointsTMP.text = fps.ToString();
+        }
 
         foreach (Voxel v in toDestroy)
         {
@@ -53,7 +57,11 @@ public class SawScript : MonoBehaviour
             {
                 points--;
             }
-            pointsTMP.text = points.ToString();
+
+            if (pointsTMP != null)
+            {
+                pointsTMP.text = points.ToString();
+            }
 
             VoxelAttribs attribs = v.vox.gameObject.GetComponent<VoxelAttribs>();
 
@@ -169,7 +177,11 @@ public class SawScript : MonoBehaviour
             {
                 points--;
             }
-            pointsTMP.text = points.ToString();
+
+            if (pointsTMP != null)
+            {
+                pointsTMP.text = points.ToString();
+            }
 
             Voxel adjacent;
 
