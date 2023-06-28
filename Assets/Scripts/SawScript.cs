@@ -15,6 +15,8 @@ public class SawScript : MonoBehaviour
 
     public int points = 0;
 
+    BushTimer timerOb;
+
     int bXsize;
     int bYsize;
     int bZsize;
@@ -23,6 +25,8 @@ public class SawScript : MonoBehaviour
     void Start()
     {
         RootScr = Root.GetComponent<RootBush>();
+
+        timerOb = GameObject.FindObjectOfType<BushTimer>();
 
         toDestroy = new HashSet<Voxel>();
 
@@ -40,7 +44,7 @@ public class SawScript : MonoBehaviour
 
         if (pointsTMP != null)
         {
-            pointsTMP.text = fps.ToString();
+            //pointsTMP.text = fps.ToString();
         }
 
         foreach (Voxel v in toDestroy)
@@ -55,7 +59,7 @@ public class SawScript : MonoBehaviour
             }
             else
             {
-                points--;
+                points -= 3;
             }
 
             if (pointsTMP != null)
@@ -156,8 +160,23 @@ public class SawScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "StaticBush")
+        bool allowCut = true;
+
+        if(timerOb != null)
         {
+            if (!timerOb.inTime)
+            {
+                allowCut = false;
+            }
+        }
+
+        if(allowCut && other.tag == "StaticBush")
+        {
+            if(timerOb != null && !timerOb.isTiming)
+            {
+                timerOb.isTiming = true;
+            }
+
             other.gameObject.SetActive(false);
 
             VoxelAttribs attribs = other.gameObject.GetComponent<VoxelAttribs>();

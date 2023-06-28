@@ -63,14 +63,25 @@ public class RootBush : MonoBehaviour
                     if (finalShape)
                     {
                         Collider[] hitCollidersToCut = Physics.OverlapSphere(voxPos, 0.0f);
-                        VoxelPosArr[x, y, z].shouldCut = true;
+                        bool shouldCut = true;
                         foreach (var hitCollider in hitCollidersToCut)
                         {
                             if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Final"))
                             {
-                                VoxelPosArr[x, y, z].shouldCut = false;
+                                shouldCut = false;
+
+                                hitCollidersToCut = Physics.OverlapSphere(voxPos, 0.0f);
+                                foreach (var hitColliderMod in hitCollidersToCut)
+                                {
+                                    if (hitColliderMod.gameObject.layer == LayerMask.NameToLayer("Mod"))
+                                    {
+                                        shouldCut = true;
+                                    }
+                                }
                             }
                         }
+
+                        VoxelPosArr[x, y, z].shouldCut = shouldCut;
 
                         if (VoxelPosArr[x, y, z].shouldCut)
                         {
@@ -124,7 +135,7 @@ public class RootBush : MonoBehaviour
         //check adjacent voxels
         if (shape)
         {
-            for (int db = 0; db < 2; db++)
+            for (int db = 0; db < 1; db++)
             {
                 for (int x = 0; x < xSize; x++)
                 {
@@ -229,8 +240,9 @@ public class RootBush : MonoBehaviour
                                     }
                                     else
                                     {
-                                        VoxelPosArr[x, y, z].vox.transform.GetChild(0).gameObject.SetActive(true);
-                                        VoxelPosArr[x, y, z].vox.transform.GetChild(1).gameObject.SetActive(false);
+                                        //SWAPPPEDDDDDDDDDDDD
+                                        VoxelPosArr[x, y, z].vox.transform.GetChild(0).gameObject.SetActive(false);
+                                        VoxelPosArr[x, y, z].vox.transform.GetChild(1).gameObject.SetActive(true);
                                         atb.cross = true;
                                     }
                                 }
